@@ -1,11 +1,13 @@
 const express = require('express');
 const {randomBytes} = require('crypto'); 
 const bodyParser = require('body-parser'); 
+const cors = require('cors'); 
 
 const app = express();
 app.use(bodyParser.json()); 
+app.use(cors()); 
 
-// stores all posts that are created
+// stores all comments that are created
 const commentsByPostId = {}; 
 
 app.get('/posts/:id/comments', (req, res) => {
@@ -23,6 +25,6 @@ app.post('/posts/:id/comments', (req, res) => {
     res.status(201).send(comments); 
 }); 
 
-app.listen(4000, ()=>{
-    console.log('Listening on port 4000'); 
+app.listen(4001, ()=>{
+    console.log('Listening on port 4001'); 
 }); 
